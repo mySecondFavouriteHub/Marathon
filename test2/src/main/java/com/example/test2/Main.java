@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -14,6 +18,19 @@ public class Main extends Application {
     }
     public static MarathonerModel[] marathoners;
     public static boolean paused;
+    public static int countFinished=0;
+    public static String getEvents(){
+        String e="";
+        for(MarathonerModel mm: getRunners()){
+            e+= mm.getStatus();
+            e+="\n";
+        }
+        return e;
+    }
+    public MarathonerModel[] sortedRunners(){
+        Arrays.sort(marathoners);
+        return marathoners;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -24,13 +41,14 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
         setRunners();
+
     }
     private static void setRunners(){
         MarathonerModel jamal= new MarathonerModel("Jamal", 52, 12.0f, "Jamal.png");
         MarathonerModel troy= new MarathonerModel("Troy", 69, 11.0f, "Troy.png");
         MarathonerModel parsa= new MarathonerModel("Parsa", 13, 14.0f, "Parsa.png");
         MarathonerModel massi= new MarathonerModel("Massi", 420, 11.0f, "Massi.png");
-        marathoners= new MarathonerModel[]{jamal, troy, parsa, massi};
+        marathoners= new MarathonerModel[]{jamal, troy, parsa, massi}   ;
     }
     public static MarathonerModel[] getRunners(){
         if(marathoners== null) setRunners();
@@ -43,6 +61,8 @@ public class Main extends Application {
             //so it can be replayed
             mm.reset();
         }
+        countFinished=0;
+
     }
     public static void runTransitions(){
         paused= false;
