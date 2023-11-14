@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.test2.Ctrl">
+
+    <HBox fx:id="Race" prefHeight="445.0" prefWidth="900.0">
+        <children>
+            <Label prefHeight="419.0" prefWidth="43.0" rotate="-90.0" text="Start" />
+            <VBox prefHeight="445.0" prefWidth="782.0">
+                <children>
+                    <HBox id="track1" fx:id="track1" prefHeight="113.0" prefWidth="865.0" style="-fx-background-color: lightGray;" />
+                    <HBox id="track2" fx:id="track2" prefHeight="99.0" prefWidth="865.0" style="-fx-background-color: gray;" />
+                    <HBox id="track3" fx:id="track3" prefHeight="121.0" prefWidth="865.0" style="-fx-background-color: lightGray;" />
+                    <HBox id="track4" fx:id="track4" prefHeight="121.0" prefWidth="865.0" style="-fx-background-color: gray;" />
+                </children>
+            </VBox>
+         <ImageView fitHeight="448.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@FinishLine.png" />
+            </image>
+         </ImageView>
+        </children></HBox>
+    <HBox alignment="CENTER" prefHeight="157.0" prefWidth="900.0" spacing="20.0">
+        <children>
+            <Button fx:id="start" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: green;" text="Start" textFill="WHITE">
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </HBox.margin>
+            </Button>
+            <Button fx:id="pause" mnemonicParsing="false" onAction="#onPausePressed" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: red;" text="Pause" textFill="WHITE">
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </HBox.margin></Button>
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#onExitPressed" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: red;" text="Exit" textFill="WHITE">
+                <HBox.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </HBox.margin></Button>
+            <TextArea prefHeight="156.0" prefWidth="629.0" text="Marathon starts in 3...2...1...&#10;">
+                <padding>
+                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                </padding></TextArea>
+        </children>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+    </HBox>
+
+</VBox>
