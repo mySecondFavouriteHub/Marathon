@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test2.Slideshow">
+   <children>
+      <ImageView fx:id="massiPicture" fitHeight="164.0" fitWidth="231.0" layoutX="359.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Massi.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parsaPicture" fitHeight="169.0" fitWidth="231.0" layoutX="359.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Parsa.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="troyPicture" fitHeight="221.0" fitWidth="251.0" layoutX="349.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Troy.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="jamalPicture" fitHeight="243.0" fitWidth="311.0" layoutX="319.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Jamal.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="seeRaceBtn" layoutX="256.0" layoutY="387.0" mnemonicParsing="false" onAction="#seeRace" prefHeight="45.0" prefWidth="186.0" style="-fx-background-color: orange;" text="See Race!" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Bookman Old Style Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="seeRunnersBtn" layoutX="488.0" layoutY="387.0" mnemonicParsing="false" onAction="#seeRunners" prefHeight="45.0" prefWidth="205.0" style="-fx-background-color: orange;" text="See Runners!" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Bookman Old Style Bold" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
