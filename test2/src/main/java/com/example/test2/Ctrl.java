@@ -28,6 +28,9 @@ public class Ctrl {
     public void updateText(){
         textArea.setText(Main.getEvents());
     }
+    public void updateTextBox(){
+        textArea.setText(Main.getEvents());
+    }
     @FXML private void onPausePressed(){
         Main.pauseTransitions();
     }
