@@ -1,5 +1,6 @@
 package com.example.test2;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
     private static Stage stage;
+    private static Scene slideshowScene, raceScene;
     public static void main(String[] args) {
         launch();
     }
@@ -33,17 +35,21 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Main.stage = stage;
-        FXMLLoader slideshowLoader = new FXMLLoader(Main.class.getResource("slideshow.fxml"));
-        Scene slideshowScene = new Scene(slideshowLoader.load(), 1000, 600);
-        stage.setTitle("Marathon!");
-        stage.setScene(slideshowScene);
-        stage.show();
+        this.stage.setTitle("Marathon!");
+        switchToSlideshowScene();
+
+        this.stage.show();
     }
     public static void switchToRaceScene() throws IOException {
         FXMLLoader layoutLoader = new FXMLLoader(Main.class.getResource("layout.fxml"));
-        Scene raceScene = new Scene(layoutLoader.load(), 1000, 600);
+        raceScene = new Scene(layoutLoader.load(), 1000, 600);
         stage.setScene(raceScene);
         setRunners();
+    }
+    public static void switchToSlideshowScene() throws IOException{
+        FXMLLoader slideshowLoader = new FXMLLoader(Main.class.getResource("slideshow.fxml"));
+        slideshowScene = new Scene(slideshowLoader.load(), 1000, 600);
+        stage.setScene(slideshowScene);
     }
     private static void setRunners(){
         MarathonerModel jamal= new MarathonerModel("Jamal", 52,  "Jamal.png");
@@ -76,11 +82,9 @@ public class Main extends Application {
     public static boolean checkFinished(){
         for(MarathonerModel mm: getRunners()){
             if(mm.isRunning()){
-                System.out.println(false);
                 return false;
             }
         }
-        System.out.print("true");
         return true;
     }
     public static void pauseTransitions(){

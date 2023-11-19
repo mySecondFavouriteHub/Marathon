@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
+
 public class Ctrl {
     @FXML private Button start, pause, exit, update;
     @FXML private HBox track1, track2, track3, track4;
@@ -19,6 +21,7 @@ public class Ctrl {
             runnersAdded= true;
         }
         if(Main.checkFinished()){
+            System.out.println("Resetting marathoners!");
             Main.resetRunners();
         }
         else{
@@ -35,7 +38,12 @@ public class Ctrl {
         Main.pauseTransitions();
     }
     @FXML private void onExitPressed(){
-        System.exit(0);
+        runnersAdded=false;
+        try {
+            Main.switchToSlideshowScene();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     private void addRunners(MarathonerModel[] runners){
         track1.getChildren().add(runners[0]);

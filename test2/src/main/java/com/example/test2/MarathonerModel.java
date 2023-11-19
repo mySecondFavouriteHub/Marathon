@@ -1,5 +1,6 @@
 package com.example.test2;
 
+import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,9 +24,10 @@ public class MarathonerModel extends ImageView{
         this.running= true;
     }
     public void reset(){
+
+
         resetAnim.play();
         setAnim();
-
     }
     public void pause(){
         runAnim.pause();
