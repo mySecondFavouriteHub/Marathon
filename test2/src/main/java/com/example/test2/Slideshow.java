@@ -20,9 +20,14 @@ public class Slideshow {
     private Button seeRaceBtn, seeRunnersBtn;
     @FXML
     private void seeRace() throws IOException {
+        //switching to the race scene
         Main.switchToRaceScene();
+        //stops playing the slideshow song
+        audioClip.pause();
     }
-    private AudioClip audioClip;{
+    public static AudioClip audioClip;
+    static {
+        //this loads the song that plays when the slideshow is commenced
         try {
             audioClip = new AudioClip(new File("").getAbsolutePath()+
                     MarathonerModel.resourcePath+"introSong.wav");
@@ -36,17 +41,26 @@ public class Slideshow {
     }
 
     @FXML private void seeRunners(){
+        //this begins playing the slideshow defined in nextImage()
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.0d), event -> nextImage())
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-        audioClip.play();
+        try {
+            audioClip.restart();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        } catch (UnsupportedAudioFileException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void nextImage(){
         //This fct cycles through the pictures of all the marathoners
-        //by making them visible/invisible at the right time
+        //by making them visible/invisible at the right time one-by-one
         if(jamalPicture.isVisible())jamalPicture.setVisible(false);
         else if(troyPicture.isVisible())troyPicture.setVisible(false);
         else if(parsaPicture.isVisible())parsaPicture.setVisible(false);

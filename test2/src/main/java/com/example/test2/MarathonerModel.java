@@ -11,41 +11,51 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 
-public class MarathonerModel extends ImageView{
-    private String name;
-    public static final String resourcePath= "\\test2\\src\\main\\resources\\com\\example\\test2\\";
-    private int number;
-    public int finishingPosition;
-    private boolean running= true;
+public class MarathonerModel extends ImageView {
+    private final String name;
+    public static final String resourcePath = "\\test2\\src\\main\\resources\\com\\example\\test2\\";
+    private final int number;
+    private boolean running = true;
+    public static boolean waiting = true;
     private TranslateTransition runAnim, resetAnim;
-    private AudioClip endOfRaceCheer;
-    public void run(){
+    private final AudioClip endOfRaceCheer;
+
+    public void run() {
+        //this function begins the marathoner's run
         runAnim.play();
-        this.running= true;
+        waiting = false;
+        this.running = true;
     }
-    public void reset(){
 
-
+    public void reset() {
+        //return the marathoner back to start
         resetAnim.play();
+        waiting = true;
         setAnim();
     }
-    public void pause(){
+
+    public void pause() {
+        //pause the marathoner (stop running)
         runAnim.pause();
     }
-    public boolean isRunning(){
+
+    public boolean isRunning() {
         return this.running;
     }
-    public void setAnim(){
-        runAnim = new TranslateTransition(Duration.seconds(5.0d-Math.random()*4.0f), this);
+
+    public void setAnim() {
+        //this sets a random-length TranslateTransition animation to the marathoner
+        runAnim = new TranslateTransition(Duration.seconds(5.0d - Math.random() * 4.0f), this);
         runAnim.setToX(700.0d);
 
-        runAnim.setOnFinished(e ->{
-            this.running= false;
-            if(!Main.weHaveAWinner){
-                Main.weHaveAWinner= true;
-                Main.winner= this.toString();
+        runAnim.setOnFinished(e -> {
+            //when one marathoner finishes, the winner is determined
+            this.running = false;
+            if (!Main.weHaveAWinner) {
+                Main.weHaveAWinner = true;
+                Main.winner = this.toString();
             }
-
+            //this plays the cheering sound when the runner has finished the run
             try {
                 endOfRaceCheer.restart();
             } catch (IOException ex) {
@@ -58,23 +68,24 @@ public class MarathonerModel extends ImageView{
 
         });
     }
-    public TranslateTransition getAnim(){
-        if(this.runAnim== null) setAnim();
-        return this.runAnim;
-    }
-    public void setResetAnim(){
-        resetAnim= new TranslateTransition(Duration.seconds(0.1d), this);
+
+    public void setResetAnim() {
+        //this sets the reset-animation (that puts the marathoner back to the beginning of the race)
+        resetAnim = new TranslateTransition(Duration.seconds(0.1d), this);
         resetAnim.setToX(20.0d);
-        resetAnim.setOnFinished(e->{
-            running=true;
+        resetAnim.setOnFinished(e -> {
+            running = true;
         });
     }
-    public MarathonerModel(String name, int number, String imgName){
-        this.name= name;
-        this.number= number;
+
+    public MarathonerModel(String name, int number, String imgName) {
+        //initiating the marathoner with each of the following parameters:
+        //1. Name, 2. Number, 3. Image, 4. Cheering sound, 5. Run and Reset animations
+        this.name = name;
+        this.number = number;
         this.setImage(fetchImage(imgName));
         try {
-            this.endOfRaceCheer= fetchAudioPlayer();
+            this.endOfRaceCheer = fetchAudioPlayer();
         } catch (UnsupportedAudioFileException e) {
             throw new RuntimeException(e);
         } catch (LineUnavailableException e) {
@@ -89,18 +100,23 @@ public class MarathonerModel extends ImageView{
         setAnim();
         setResetAnim();
     }
-    public Image fetchImage(String name){
-        String filePathAndName= new File("").getAbsolutePath()+resourcePath+name;
+
+    public Image fetchImage(String name) {
+        //This fct makes sure to get the image from the appropriate folder
+        String filePathAndName = new File("").getAbsolutePath() + resourcePath + name;
         return new Image(filePathAndName);
     }
+
     public AudioClip fetchAudioPlayer() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        String filePathAndName= new File("").getAbsolutePath()+resourcePath+"cheeringAudience.wav";
+        //getting the audio clip for the cheering sound effect
+        String filePathAndName = new File("").getAbsolutePath() + resourcePath + "cheeringAudience.wav";
         return new AudioClip(filePathAndName);
     }
-    public String toString(){
-        return this.name+"("+this.number+")";
-    }
 
+    public String toString() {
+        //toString fct that displays the runner's name and number in parentheses
+        return this.name + "(" + this.number + ")";
+    }
 
 
 }

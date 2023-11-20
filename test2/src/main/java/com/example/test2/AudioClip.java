@@ -4,10 +4,7 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 public class AudioClip {
-    public String name, status, filePath;
-    public String getName(){
-        return this.name;
-    }
+    public String status, filePath;
     Long currentFrame;
     public Clip clip;
     AudioInputStream audioInputStream;
@@ -42,22 +39,6 @@ public class AudioClip {
         status = "paused";
     }
 
-    // Method to resume the audio
-    public void resumeAudio() throws UnsupportedAudioFileException,
-            IOException, LineUnavailableException
-    {
-        if (status.equals("play"))
-        {
-            System.out.println("Audio is already "+
-                    "being played");
-            return;
-        }
-        clip.close();
-        resetAudioStream();
-        clip.setMicrosecondPosition(currentFrame);
-        this.play();
-    }
-
     // Method to restart the audio
     public void restart() throws IOException, LineUnavailableException,
             UnsupportedAudioFileException
@@ -70,41 +51,11 @@ public class AudioClip {
         this.play();
     }
 
-    // Method to stop the audio
-    public void stop() throws UnsupportedAudioFileException,
-            IOException, LineUnavailableException
-    {
-        status= "waiting";
-        currentFrame = 0L;
-        clip.stop();
-        clip.close();
-    }
-
-
-    // Method to jump over a specific part
-    public void jump(long c) throws UnsupportedAudioFileException, IOException,
-            LineUnavailableException
-    {
-        if (c > 0 && c < clip.getMicrosecondLength())
-        {
-            clip.stop();
-            clip.close();
-            resetAudioStream();
-            currentFrame = c;
-            clip.setMicrosecondPosition(c);
-            this.play();
-        }
-    }
-
     // Method to reset audio stream
     public void resetAudioStream() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         audioInputStream = AudioSystem.getAudioInputStream(
                 new File(filePath).getAbsoluteFile());
         clip.open(audioInputStream);
         clip.loop(0);
-    }
-    @Override
-    public String toString(){
-        return this.name;
     }
 }

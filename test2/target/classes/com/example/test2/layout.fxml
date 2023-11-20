@@ -30,21 +30,20 @@
         </children></HBox>
     <HBox alignment="CENTER" prefHeight="157.0" prefWidth="900.0" spacing="20.0">
         <children>
-            <Button fx:id="start" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: green;" text="Start" textFill="WHITE">
+            <Button fx:id="start" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: green;" text="Start" textFill="WHITE">
                 <HBox.margin>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="pause" mnemonicParsing="false" onAction="#onPausePressed" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: red;" text="Pause" textFill="WHITE">
+            <Button fx:id="pause" mnemonicParsing="false" onAction="#onPausePressed" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: red;" text="Pause" textFill="WHITE">
                 <HBox.margin>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                 </HBox.margin></Button>
-         <Button id="update" fx:id="update" mnemonicParsing="false" onAction="#updateText" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: darkblue;" text="update" textFill="WHITE" />
-            <Button fx:id="exit" mnemonicParsing="false" onAction="#onExitPressed" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: red;" text="Exit" textFill="WHITE">
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#onExitPressed" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: red;" text="Exit" textFill="WHITE">
                 <HBox.margin>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                 </HBox.margin></Button>
-            <TextArea fx:id="textArea" prefHeight="137.0" prefWidth="495.0" style="-fx-font-size: 30;" text="PRESS START!!&#10;">
+            <TextArea fx:id="textArea" prefHeight="137.0" prefWidth="495.0" style="-fx-font-size: 30;" text="Press Start!&#10;">
                 <padding>
                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                 </padding></TextArea>
